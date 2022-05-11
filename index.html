@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>YUN HONG BI</title>
+    <link rel="shortcut icon" type="image/x-icon" href="images/title_logo.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="images/title_logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/fixed-positioning.css">
+
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="js/prefixfree.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+
+    <link href="https://fonts.googleapis.com/css?family=Staatliches&display=swap" rel="stylesheet">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="js/jquery.easypiechart.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+    <script src="js/jquery.counterup.js"></script>
+
+    <style>
+        /*기본 레이아웃 구성*/
+        html, body {width: 100%; height: 100vh; position: relative; }
+        body::-webkit-scrollbar {display: none;}
+
+        /*인트로*/
+        #intro h1{font-family: 'Staatliches', cursive; font-size: 7vw; letter-spacing: 0.2vw;line-height: 0px; margin-top: 15%; color: #251e1e; font-weight: normal; color: #32092b}
+        #intro p{font-family: 'Staatliches', cursive; font-size: 3.5vw; color: #8b002a;}
+
+        /*ABOUT*/
+        #About{position: relative; top: 15%;}
+        #About .INTRO_btn{position: relative; z-index: 99; color: #f9f9f9; top: 15%; cursor: pointer; transition: 0.3s;
+        font-family: 'Staatliches', cursive; letter-spacing: 10px; font-weight: normal;text-indent: 3vw;}
+        #About .ABOUT_btn{position: relative; z-index: 99; color: #f9f9f9; top: 15%; cursor: pointer; transition: 0.3s;
+        font-family: 'Staatliches', cursive; letter-spacing: 10px; font-weight: normal;text-indent: 3vw;}
+
+        /*About content*/
+        .About_content{position:fixed; top: 30%;  text-indent: 10vw; z-index: 99; color: #f9f9f9; font-size: 18px; letter-spacing: 0.1vw;}
+        .About_content h3{font-size: 24px;}
+        .About_content p{line-height: 24px;}
+        .About_content h4{font-size: 20px; line-height: 20px;}
+        .Work_Process{position:fixed; z-index: 99; color: #f9f9f9; font-size: 18px; line-height: 1.5vw;top: 30%; right: 10%; width: 50%;}
+        .Work_Process i{display: block; font-size: 40px; line-height: 80px;}
+        .Work_Process h3{font-size: 36px; text-align: center;}
+        .Work_Process ul{width: 100%;}
+        .Work_Process ul li{float: left; width: 16.66%; font-size: 20px; text-align: center; font-weight: bold;}
+        .Work_Process::after{content: ''; display: block; clear: both;}
+
+        /*skill*/
+        #skill{position: relative; top: 30%; width: 100%; text-align: center;}
+        #skill>h2{position: relative; z-index: 99; color: #f9f9f9; top: 30%; cursor: pointer; transition: 0.3s;
+        font-family: 'Staatliches', cursive; letter-spacing: 10px; font-weight: normal;text-indent: 2vw;}
+
+        /*skill list*/
+        .skill_list{z-index: 99; width: 90%; left: 5%;}
+        .skill_list ul li{float: left; width: 33.33%; text-align: center;}
+        .skill_list::after{content: ''; display: block; clear: both;}
+        .chart{position: relative; color: #f2e3a2;}
+        .chart .percent{position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 30px; font-weight: bold; line-height: 2vw;}
+        .chart .percent i{font-size: 100px; margin-bottom: 10px;}
+        .skill_title{color: #ffeadd; line-height: 5vw; font-size: 22px; font-weight: bold}
+
+        /*skill icon*/
+        .fa-html5{color: #f78224; font-weight: normal}
+        .fa-css3-alt{color: #007bc9; font-weight: normal}
+        .fa-node-js{color: #8cc84b; font-weight: normal}
+        .fa-code{color: #f9f9f9;}
+        .fa-php{color: #777bb3;}
+        .fa-adobe{color: #ec1b2e;}
+
+        /*portfolio*/
+        #Portfolio>h2{position: relative; z-index: 99; color: #f9f9f9; top: 30%; cursor: pointer; transition: 0.3s;
+        font-family: 'Staatliches', cursive; letter-spacing: 10px; font-weight: normal;text-indent: 2vw;}
+        .Porfol_list{position: fixed; z-index: 100; width: 100%; top: 200px;left: 5%;}
+        .Porfol_list .imageBox{width: 90%; height: 450px; margin: 0 auto;}
+        .Porfol_list>div{float: left; width: 45%; text-align: center;}
+        .Porfol_list::after{content: ''; display: block; clear: both;}
+        .Porfol_list h3{color: #f9f9f9; font-size: 18px; line-height: 18px;}
+        .Porfol_list p{color: #f9f9f9; font-size: 14px; line-height: 14px;}
+        .Porfol_list a{color: #f9f9f9; font-size: 16px; line-height: 50px;  letter-spacing: 5px; width: 200px; background: #251e1e; display: block; margin:  0 auto;}
+        .Porfol_list a:hover{box-shadow: 200px 0px 0px inset rgba(255,255,255,0.3); transition: 0.5s;}
+
+
+        /*portfolio image*/
+        .Porfol_1>.imageBox{background-image: url(images/electro_1.png); background-size: cover; background-position: 100% 0%; transition: 0.5s;}
+        .Porfol_2>.imageBox{background-image: url(images/staylive_1.png); background-size: cover;background-position: 100% 0%;transition: 0.5s;}
+        .Porfol_3>.imageBox{background-image: url(images/ritz_1.png); background-size: cover;background-position: 100% 0%;transition: 0.5s;}
+        .Porfol_4>.imageBox{background-image: url(images/seoul_1.png); background-size: cover;background-position: 100% 0%;transition: 0.5s; }
+
+        /*hover*/
+        #About .INTRO_btn:hover{color: #f3ab63 !important; transition: 0.3s;}
+        #About .ABOUT_btn:hover{color: #ff5b1b; transition: 0.3s;}
+        #skill>h2:hover{color: #ff5b1b; transition: 0.3s;}
+
+        .Porfol_1>.imageBox:hover{animation: moveSlide 20s linear infinite; transition: 0.5s;}
+        .Porfol_2>.imageBox:hover{animation: moveSlide 20s linear infinite; transition: 0.5s;}
+        .Porfol_3>.imageBox:hover{animation: moveSlide 17s linear infinite; transition: 0.5s;}
+        .Porfol_4>.imageBox:hover{animation: moveSlide 10s linear infinite; transition: 0.5s;}
+
+        @keyframes moveSlide{
+            0%{background-position: 100% 0%;}
+            40%{background-position: 100% 100%;}
+            50%{background-position: 100% 100%;}
+            90%{background-position: 100% 0%;}
+            100%{background-position: 100% 0%;}
+        }
+
+
+        /*footer*/
+        #footer{position: relative; top: 1%; z-index: 99; font-size: 18px; color: #3e3e3e; letter-spacing: 0.2vw; line-height: 3vw; writing-mode: tb-rl; color: #f9f9f9;}
+
+
+    </style>
+
+    <style>
+    @media all and (min-width:1000px) and (max-width:1500px){
+        #intro h1{font-size: 80px;}
+        #intro p{font-size: 45px;}
+        .About_content{top: 33%;}
+        .Work_Process{right: 3%;}
+        .Work_Process ul li{width: 33.33%;margin-top: 3%;}
+        }
+    @media all and (max-width:999px){
+        #intro h1{font-size: 40px;}
+        #intro p{font-size: 24px;}
+        .About_content h3{font-size: 28px;}
+        .About_content p{font-size: 16px;}
+        .About_content h4{font-size: 14px;}
+        .About_content{top: 50px; width: 90%; text-align: center;}
+        .Work_Process{top: 340px; width: 80%;}
+        .Work_Process ul li{width: 33.33%;margin-top: 10px; font-size: 16px;}
+        .Work_Process h3{font-size: 20px; line-height: 20px;}
+        .chart canvas{width: 120px;height: 120px;}
+        .skill_list{top: 200px !important;}
+        .skill_list ul li{width: 50%; font-size: 12px; margin-top: 60px;}
+        .chart .percent{font-size: 12px;}
+        .chart .percent i{font-size: 40px;}
+        .skill_title{font-size: 20px; line-height: 20px; display: block; margin-top: 50px;}
+        .Porfol_list{top: 200px;}
+        .Porfol_list .imageBox{height: 300px;}
+        .Porfol_4>.imageBox{background-position: 0% 0%;}
+        .Porfol_list h3{font-size: 14px;}
+        .Porfol_list p{font-size: 10px;}
+        .Porfol_list a{font-size: 10px;width: 150px; }
+        #footer{line-height: 4vw;}
+        }
+    </style>
+
+
+    <script>
+        $(function() {
+
+
+            $(window).scroll(function(){
+                var sct = $(window).scrollTop();
+                var num = $('.counter');
+                var skill_top = $("#skill").offset().top;
+                if (sct > skill_top) {
+
+                    $(".chart").easyPieChart({
+                        size:250,
+                        barColor:'#ff5b1b',
+                        trackColor:false,
+                        scaleColor: '#dd012b',
+                        lineWidth:15,
+                        lineCap:'circle',
+                        animate:3500
+                    });
+
+
+                }
+
+
+            });
+            $('span.counter').counterUp({
+                    delay: 1,
+                    time: 600
+            });
+
+            $("#About .INTRO_btn").click(function(){
+                $('html, body').animate({scrollTop:0},2500,"swing");
+            });
+            $("#About .ABOUT_btn").click(function(){
+                $('html, body').animate({scrollTop:2000},2500,"swing");
+            });
+            $("#skill>h2").click(function(){
+                $('html, body').animate({scrollTop:4000},2500,"swing");
+            });
+            $("#Portfolio>h2").click(function(){
+                $('html, body').animate({scrollTop:7000},2500,"swing");
+            });
+
+        });
+
+    </script>
+
+</head>
+
+<body>
+
+
+    <div id="bg1" data-0="background-position:0px 0px;" data-end="background-position:0px -5500px;"></div>
+    <div id="bg2" data-0="background-position:0px 0px;" data-end="background-position:0px -5000px;"></div>
+    <div id="bg3" data-0="background-position:0px 0px;" data-end="background-position:0px -4500px;"></div>
+
+
+
+           <div id="progress" data-0="height:100vh;" data-end="height:0%;"></div>
+           <div id="progress2" data-0="height:100vh;" data-end="height:0%;"></div>
+
+            <div id="intro" data-0="opacity:1;top:0%;" data-1500="opacity:0;top:40%; opacity:0">
+                <h1 class="text-flicker-out-glow">YUN HONG BI</h1>
+                <p>web publisher</p>
+
+            </div>
+            <div id="About">
+               <h2 data-0="color:#ff5b1b;" data-1500="position:fixed;top:0;" data-3500="text-indent: 1vw" class="INTRO_btn">INTRO</h2>
+                <h2 data-0="left:-100%;" data-1500="left:0;position:fixed;top:4.3%;font-size:60px;text-indent: 3vw;" data-2600="left:0;top:4.3%;font-size:60px;text-indent: 3vw;" data-4000="font-size:20px;text-indent: 1vw" class="ABOUT_btn">ABOUT</h2>
+                <div class="About_content" data-0="left:-100%" data-1000="left:-100%" data-2000="left:0;" data-2900="left:0;" data-2950="left:-100%">
+                    <h3>윤 홍 비</h3>
+                    <p>대림대학교 스포츠지도과</p>
+                    <p><a href="mailto:hgh0328@naver.com">hby1126hh@naver.com</a></p>
+                    <p><a href="+821041903280">010 5464 4110</a></p>
+                    <p>1994년 11월 26일생(만 24세)</p>
+                    <p>경기도 광명시 거주</p>
+                    <h4>IIBI HTML5 스마트 콘텐츠 제작자 과정 수료</h4>
+                    <p>2020년 3월 ~ 2020년 8월</p>
+                </div>
+                <div class="Work_Process" data-1000="opacity:0;" data-2000="opacity:1;" data-2900="opacity:1;" data-3000="opacity:0">
+                    <h3>WORK PROCESS</h3>
+                    <ul>
+                        <li><i class="far fa-lightbulb"></i>IDEA</li>
+                        <li><i class="fas fa-balance-scale"></i>CONCEPT</li>
+                        <li><i class="fas fa-pencil-ruler"></i>DESIGN</li>
+                        <li><i class="far fa-file-code"></i>DEVELOP</li>
+                        <li><i class="fas fa-bug"></i>DEBUGGING</li>
+                        <li><i class="fas fa-rocket"></i>LAUNCH</li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <div id="skill">
+                <h2 data-2000="left:-100%" data-3000="left:0;position:fixed;top:7.5%;font-size:60px;text-indent: 3vw;" data-5500="left:0;position:fixed;top:7.5%;font-size:60px;text-indent: 3vw;" data-6500="font-size:21px;text-indent: 1vw">SKILL</h2>
+                <div class="skill_list" data-0="display:none;" data-3300="display:block;position:fixed; top:25%" data-6000="display:none;">
+                    <ul>
+                    <li><div class="chart" data-percent="99">
+                    <span class="percent"><i class="fab fa-html5"></i><br><span class="counter">99</span>%</span></div>
+                    <span class="skill_title">
+                    HTML5</span></li>
+
+                    <li><div class="chart" data-percent="99">
+                    <span class="percent"><i class="fab fa-css3-alt"></i><br><span class="counter">99</span>%</span></div>
+                    <span class="skill_title">
+                    CSS3</span></li>
+                    <li><div class="chart" data-percent="95">
+                    <span class="percent"><i class="fab fa-node-js"></i><br><span class="counter">95</span>%</span></div>
+                    <span class="skill_title">
+                    javascript</span></li>
+                    <li><div class="chart" data-percent="97">
+                    <span class="percent"><i class="fas fa-code"></i><br><span class="counter">97</span>%</span></div>
+                    <span class="skill_title">
+                    jQuery</span></li>
+                    <li><div class="chart" data-percent="90">
+                    <span class="percent"><i class="fab fa-php"></i><br><span class="counter">90</span>%</span></div>
+                    <span class="skill_title">
+                    PHP</span></li>
+                    <li><div class="chart" data-percent="99">
+                    <span class="percent"><i class="fab fa-adobe"></i><br><span class="counter">99</span>%</span></div>
+                    <span class="skill_title">
+                    Photoshop &amp; Illustratior</span></li>
+                </ul>
+                </div>
+            </div>
+            <div id="Portfolio">
+                <h2 data-6000="left:-100%" data-6500="left:0;position:fixed;top:7.5%;font-size:60px;text-indent: 3vw;" data-10000="left:0;position:fixed;top:7.5%;font-size:60px;text-indent: 3vw;">Portfolio</h2>
+                <div class="Porfol_list" data-0="display:none" data-6000="display:block;" data-8000="display:none">
+                    <div class="Porfol_1">
+                        <div class="imageBox"></div>
+                        <h3>ELECTRO MART 자체제작 웹</h3>
+                        <p>HTML5 CSS3 Javasciprt jQuery / 반응형</p>
+                        <h4><a target="_blank" href="http://hgh0328.github.io/ELECTROMART">VIEW</a></h4>
+                    </div>
+                    <div class="Porfol_2">
+                        <div class="imageBox"></div>
+                        <h3>StayAlive 자체제작 웹</h3>
+                        <p>HTML5 CSS3 Javasciprt jQuery / 반응형</p>
+                        <h4><a target="_blank" href="http://hgh0328.github.io/StayAlive">VIEW</a></h4>
+                </div>
+                </div>
+                <div class="Porfol_list" data-0="display:none" data-8000="display:block;">
+                <div class="Porfol_3">
+                        <div class="imageBox"></div>
+                        <h3>RITZHOTEL 자체제작 웹</h3>
+                        <p>HTML5 CSS3 Javasciprt jQuery / 반응형</p>
+                        <h4><a target="_blank" href="http://hgh0328.github.io/RITZHOTEL">VIEW</a></h4>
+                    </div>
+                     <div class="Porfol_4">
+                        <div class="imageBox"></div>
+                        <h3>SeoulLand 리뉴얼 웹</h3>
+                        <p>HTML5 CSS3 Javasciprt jQuery / 모바일</p>
+                        <h4><a target="_blank" href="https://hgh0328.github.io/SEOULLAND/">VIEW</a></h4>
+                        <h4><a target="_blank"
+
+                        href="http://hgh0328.github.io/mSEOULLAND">VIEW Moblie</a></h4>
+                    </div>
+
+            </div>
+          </div>
+
+
+
+            <div id="footer">
+                <address data-0="right:0%;top:-100%;;" data-1500="right:0;position:fixed;top:25%;">
+                Copyright 2019 HongJeongHwa All rights reseved.</address>
+            </div>
+
+
+
+
+
+
+
+
+
+<!--
+    <script src="//cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+    <script src="js/jquery.counterup.js"></script>
+-->
+
+
+
+	<script type="text/javascript" src="js/skrollr.min.js"></script>
+	<script type="text/javascript">
+	var s = skrollr.init({
+		edgeStrategy: 'set',
+		easing: {
+			WTF: Math.random,
+			inverted: function(p) {
+				return 1-p;
+			}
+		}
+	});
+	</script>
+
+
+</body></html>
